@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div className='w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-teal-300 text-violet-700'>
-      <h1 className='text-violet-700 my-3'>Password Generator</h1>
+      <h1 className='text-violet-700 my-3 text-center font-semibold text-xl'>Password Generator</h1>
       <div className='flex shadow rounded-lg overflow-hidden mb-4'>
         <input
           type="text"
@@ -47,7 +47,7 @@ function App() {
         />
         <button
           onClick={copyPasswordToClipboard}
-          className='outline-none bg-violet-600 text-white px-3 py-0.5 shrink-0 hover:bg-teal-600'>
+          className='outline-none bg-blue-600 text-white px-3 py-0.5 shrink-0 hover:bg-violet-600'>
           copy</button>
       </div>
 
