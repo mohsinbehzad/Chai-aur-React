@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, useRef } from 'react'
 
 
 function App() {
@@ -27,7 +27,11 @@ function App() {
 
   const copyPasswordToClipboard = useCallback(() => {
     window.navigator.clipboard.writeText(generatedPassword)
+    passwordRef.current?.select();     // visual representation
+    passwordRef.current?.setSelectionRange(0, 50)   // 50 character range will be visibly shown to copy, but deep inside more than 50 will be copied 
   }, [generatedPassword])
+
+  const passwordRef = useRef(null)
 
   return (
     <div className='w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-teal-300 text-violet-700'>
@@ -39,9 +43,10 @@ function App() {
           className='outline-none w-full py-1 px-3'
           placeholder='Generated Password'
           readOnly
+          ref={passwordRef}
         />
         <button
-        onClick={copyPasswordToClipboard}
+          onClick={copyPasswordToClipboard}
           className='outline-none bg-violet-600 text-white px-3 py-0.5 shrink-0 hover:bg-teal-600'>
           copy</button>
       </div>
