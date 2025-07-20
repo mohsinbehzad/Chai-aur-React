@@ -25,6 +25,10 @@ function App() {
     passwordGenerator()
   }, [passwordLength, includeNumbers, includeSymbols])
 
+  const copyPasswordToClipboard = useCallback(() => {
+    window.navigator.clipboard.writeText(generatedPassword)
+  }, [generatedPassword])
+
   return (
     <div className='w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-teal-300 text-violet-700'>
       <h1 className='text-violet-700 my-3'>Password Generator</h1>
@@ -37,6 +41,7 @@ function App() {
           readOnly
         />
         <button
+        onClick={copyPasswordToClipboard}
           className='outline-none bg-violet-600 text-white px-3 py-0.5 shrink-0 hover:bg-teal-600'>
           copy</button>
       </div>
