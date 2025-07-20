@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 
 function App() {
@@ -6,6 +6,20 @@ function App() {
   const [includeNumbers, setIncludeNumbers] = useState(false)
   const [includeSymbols, setIncludeSymbols] = useState(false)
   const [generatedPassword, setGeneratedPassword] = useState("")
+
+  const passwordGenerator = useCallback(() => {
+    let pass = ""
+    let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+
+    if (includeNumbers) str += "0123456789"
+    if (includeSymbols) str += "!@#$%^&*-_+=[]{}~`()"
+
+    for (let i = 0; i < passwordLength; i++) {
+      let char = Math.floor(Math.random() * str.length + 1)
+      pass += str.charAt(char)
+    }
+    setGeneratedPassword(pass)
+  }, [passwordLength, includeNumbers, includeSymbols, setGeneratedPassword])
 
   return (
     <div className='w-full max-w-md mx-auto shadow-md rounded-lg px-4 py-3 my-8 bg-teal-300 text-violet-700'>
@@ -23,8 +37,8 @@ function App() {
           copy</button>
       </div>
 
-      <div className='flex text-sm gap-x-2'>
-        <div className='flex items-center gap-x-1'>
+      <div className='flex text-sm gap-x-4'>
+        <div className='flex items-center gap-x-2'>
           <input
             type="range"
             min={8}
