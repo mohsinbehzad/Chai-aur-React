@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import Root from './Root'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './components/Home'
+import About from './components/About'
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />
+      },
+      {
+        path: "/about",
+        element: <About />
       }
     ]
   }
